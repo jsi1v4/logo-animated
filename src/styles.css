@@ -1,0 +1,14 @@
+:root {
+  --bg-color: #2c2c2c;
+  --fg-color: #fafafa;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  margin: 0;
+}
+
+.hello::after {
+  content: " World";
+}
