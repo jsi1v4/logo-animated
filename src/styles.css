@@ -1,3 +1,5 @@
+/* ----- initial state ----- */
+
 :root {
   --bg-color-primary: #2c2c2c;
   --bg-color-secondary: #6b6b6b;
@@ -6,8 +8,9 @@
 }
 
 body {
-  color: var(--fg-color);
+  overflow: hidden;
   margin: 0;
+  color: var(--fg-color);
 }
 
 .background {
@@ -22,39 +25,140 @@ body {
   height: 100vh;
 }
 
-.square {
-  display: block;
-  position: relative;
-  background-color: var(--bg-color-primary);
-  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.3);
+.base {
+  width: 256px;
+  height: 256px;
   border-radius: 16px;
+  box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.square {
+  position: absolute;
+  background-color: var(--bg-color-primary);
+  z-index: 1;
 }
 
 .logo {
-  display: block;
-  width: 256px;
-  height: 256px;
+  position: absolute;
+  max-width: 100%;
+  z-index: 2;
 }
 
-.square {
-  transform: scale(1.15) rotateY(-30deg) rotateX(45deg) translateZ(5rem);
+.logo-2 {
+  margin: 6px;
+}
+
+.logo-3 {
+  margin-left: 6px;
+}
+
+.row,
+.column {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* ----- animation control ----- */
+
+.base,
+.square,
+.logo {
   transform-origin: 50% 100%;
   transform-style: preserve-3d;
   transition: 1s ease transform;
 }
-.square:hover {
-  transform: scale(1);
-  /* animation: fill 3s 1s forwards; */
+
+.base,
+.square,
+.logo-1,
+.logo-2,
+.logo-3 {
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: both;
 }
 
-.logo {
-  transform: translateZ(10rem);
+.base {
+  animation-name: layers-base;
 }
 
-/* @keyframes fill {
-  to {
+.square {
+  animation-name: fill, layers-square;
+  animation-duration: 2s, 3s;
+  animation-delay: 1s, 3s;
+}
+
+.logo-1 {
+  animation-name: layers-logo-1;
+}
+
+.logo-2 {
+  animation-name: layers-logo-2;
+}
+
+.logo-3 {
+  animation-name: layers-logo-3;
+}
+
+/* ----- keyframes ----- */
+
+@keyframes fill {
+  from {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
   }
-} */
+  to {
+    width: 256px;
+    height: 256px;
+    border-radius: 16px;
+  }
+}
+
+@keyframes layers-base {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15) rotateY(-30deg) rotateX(45deg);
+  }
+}
+
+@keyframes layers-square {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15) rotateY(-30deg) rotateX(45deg) translateZ(5rem);
+  }
+}
+
+@keyframes layers-logo-1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15) rotateY(-30deg) rotateX(45deg) translateZ(12rem);
+  }
+}
+
+@keyframes layers-logo-2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15) rotateY(-30deg) rotateX(45deg) translateZ(15rem);
+  }
+}
+
+@keyframes layers-logo-3 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15) rotateY(-30deg) rotateX(45deg) translateZ(10rem);
+  }
+}
