@@ -4,7 +4,7 @@
   "description": "Tests and studies with motion and animations.",
   "main": "src/main.js",
   "repository": "https://github.com/jsi1v4/logo-animated.git",
-  "author": "Jose Silva <me@jsi1v4.dev>",
+  "author": "Jsi1v4 <git@jsi1v4.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
